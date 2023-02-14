@@ -151,6 +151,7 @@ import kotlin.collections.ArrayList
 // 6.0 DashboardActivity AppV 4.0.6 saheli 12-01-2023 multiple contact Data added on Api called
 // 7.0 DashboardFragment AppV 4.0.6  Saheli    25/01/2023  mantis 25623
 // 8.0 DashboardFragment  AppV 4.0.6 Saheli    01/02/2023  mantis 25637
+// 9.0 DashboardFragment  AppV 4.0.6 Saheli    14/02/2023  mantis 0001 screen recoreder update
 class DashboardFragment : BaseFragment(), View.OnClickListener, HBRecorderListener, View.OnTouchListener {
 
     var dX = 0f
@@ -6044,7 +6045,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener, HBRecorderListen
                 /*           val intent = Intent(mContext, ScreenRecService::class.java)
                            intent.action = CustomConstants.START_Screen_SERVICE
                            mContext.startService(intent)*/
-                hbRecorder!!.startScreenRecording(data, resultCode, mContext as Activity)
+
+//                hbRecorder!!.startScreenRecording(data, resultCode, mContext as Activity)
+                hbRecorder!!.startScreenRecording(data, resultCode)
             }
             if (requestCode == 171){
                 println("reg_face - dashboard_frag face Detect Face Match"+AppUtils.getCurrentDateTime());
