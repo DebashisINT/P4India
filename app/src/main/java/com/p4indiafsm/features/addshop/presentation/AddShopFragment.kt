@@ -1921,7 +1921,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:${addShopResult.status} " + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     if(AppUtils.isOnline(mContext)){
@@ -1958,7 +1958,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                                     //showShopVerificationDialog(addShop.shop_id!!)
 
                                 } else if (addShopResult.status == NetworkConstant.SESSION_MISMATCH) {
-                                    XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                    XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", mismatch RESPONSE:${addShopResult.status}" + result.message)
                                     progress_wheel.stopSpinning()
                                     (mContext as DashboardActivity).clearData()
                                     startActivity(Intent(mContext as DashboardActivity, LoginActivity::class.java))
@@ -1976,7 +1976,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                                     (mContext as DashboardActivity).loadFragment(FragType.ShopDetailFragment, true, addShop.shop_id!!)
                                 } else {
                                     progress_wheel.stopSpinning()
-                                    XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                    XLog.d("AddShop : " + ", SHOP: " + addShop.shop_name + "else , RESPONSE:" + result.message)
                                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
                                     voiceAttendanceMsg(getString(R.string.shop_added_successfully))
 //                                (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
