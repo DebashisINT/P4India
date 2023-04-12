@@ -11,6 +11,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.*
@@ -39,6 +40,7 @@ import com.p4indiafsm.features.splash.presentation.api.VersionCheckingRepoProvid
 import com.p4indiafsm.features.splash.presentation.model.VersionCheckingReponseModel
 import com.p4indiafsm.widgets.AppCustomTextView
 import com.elvishew.xlog.XLog
+import com.p4indiafsm.features.location.SingleShotLocationProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -493,9 +495,44 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
         if (TextUtils.isEmpty(Pref.user_id) || Pref.user_id.isNullOrBlank()) {
             if (!isLoginLoaded) {
                 isLoginLoaded = true
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-                finish()
+
+                // 2.0 SplashActivity AppV 4.0.7 Suman    21/03/2023 Location rectification for previous location
+                progress_wheel.spin()
+                try{
+                    SingleShotLocationProvider.requestSingleUpdate(this,
+                        object : SingleShotLocationProvider.LocationCallback {
+                            override fun onStatusChanged(status: String) {
+                            }
+
+                            override fun onProviderEnabled(status: String) {
+                            }
+
+                            override fun onProviderDisabled(status: String) {
+                            }
+
+                            override fun onNewLocationAvailable(location: Location) {
+                                Pref.latitude = location.latitude.toString()
+                                Pref.longitude = location.longitude.toString()
+
+                                progress_wheel.stopSpinning()
+
+                                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                                finish()
+                            }
+                        })
+                }
+                catch (ex:Exception){
+                    ex.printStackTrace()
+                    progress_wheel.stopSpinning()
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                    finish()
+                }
+
+                //startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                //overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                //finish()
             }
 
         } else {
