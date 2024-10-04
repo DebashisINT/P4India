@@ -1803,12 +1803,12 @@ class ReturnTypeListFragment : BaseFragment(), View.OnClickListener {
                 var i = 0
                 returnList.user_id = Pref.user_id
                 returnList.session_token = Pref.session_token
-                returnList.shop_id = unsyncData?.get(i).shop_id
-                returnList.return_id = unsyncData?.get(i).return_id
-                returnList.latitude = unsyncData?.get(i).return_lat
-                returnList.longitude = unsyncData?.get(i).return_long
-                returnList.description = unsyncData?.get(i).description
-                returnList.return_date_time = unsyncData?.get(i).date
+                returnList.shop_id = unsyncData?.get(i)!!.shop_id
+                returnList.return_id = unsyncData?.get(i)!!.return_id
+                returnList.latitude = unsyncData?.get(i)!!.return_lat
+                returnList.longitude = unsyncData?.get(i)!!.return_long
+                returnList.description = unsyncData?.get(i)!!.description
+                returnList.return_date_time = unsyncData?.get(i)!!.date
 
 
                 var returnProductList = AppDatabase.getDBInstance()?.returnProductListDao()?.getIDUnsynced(returnList?.return_id.toString())
@@ -1861,14 +1861,14 @@ class ReturnTypeListFragment : BaseFragment(), View.OnClickListener {
                 var i=0
                 returnList.user_id=Pref.user_id
                 returnList.session_token=Pref.session_token
-                returnList.shop_id=unsyncData?.get(i).shop_id
-                returnList.return_id=unsyncData?.get(i).return_id
-                returnList.latitude=unsyncData?.get(i).return_lat
-                returnList.longitude=unsyncData?.get(i).return_long
-                returnList.description=unsyncData?.get(i).description
-                returnList.return_date_time=unsyncData?.get(i).date
+                returnList.shop_id=unsyncData?.get(i)!!.shop_id
+                returnList.return_id=unsyncData?.get(i)!!.return_id
+                returnList.latitude=unsyncData?.get(i)!!.return_lat
+                returnList.longitude=unsyncData?.get(i)!!.return_long
+                returnList.description=unsyncData?.get(i)!!.description
+                returnList.return_date_time=unsyncData?.get(i)!!.date
                 returnList.address=""
-                returnList.return_amount=unsyncData?.get(i).amount
+                returnList.return_amount=unsyncData?.get(i)!!.amount
 
 
                 var returnProductList= AppDatabase.getDBInstance()?.returnProductListDao()?.getIDUnsynced(returnList?.return_id.toString())

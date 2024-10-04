@@ -63,7 +63,7 @@ class DeviceInfoAdapter(private val mContext: Context, private val list: ArrayLi
                 else {
                     sync_icon.setImageResource(R.drawable.ic_registered_shop_not_sync)
                     sync_icon.setOnClickListener {
-                        onSyncClick(list?.get(adapterPosition))
+                        onSyncClick(list?.get(adapterPosition)!!)
                     }
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){

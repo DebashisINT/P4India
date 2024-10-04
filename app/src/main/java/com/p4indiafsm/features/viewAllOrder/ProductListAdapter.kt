@@ -360,7 +360,7 @@ class ProductListAdapter(
                 }
                 if (productRateList != null) {
                     for (i in productRateList.indices) {
-                        if (productRateList[i]?.product_id.toInt() == categoryList?.get(adapterPosition)?.id) {
+                        if (productRateList[i]?.product_id!!.toInt() == categoryList?.get(adapterPosition)?.id) {
                             itemView.edt_rt_product_new_list.setText(productRateList[i].rate.toString())
                             break
                         }

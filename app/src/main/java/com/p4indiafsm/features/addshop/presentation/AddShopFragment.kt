@@ -6230,7 +6230,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
         val allShopList= AppDatabase.getDBInstance()?.addShopEntryDao()?.all
         shopDataModel.isShopDuplicate=false
         if(allShopList != null){
-            for(i in 0..allShopList?.size-1){
+            for(i in 0..allShopList?.size!!-1){
                 var shopLat = allShopList.get(i).shopLat
                 var shopLon = allShopList.get(i).shopLong
                 if(shopLat == shopDataModel.shopLat && shopLon == shopDataModel.shopLong){

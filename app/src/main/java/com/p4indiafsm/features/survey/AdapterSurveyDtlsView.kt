@@ -56,7 +56,7 @@ class AdapterSurveyDtlsView(var context: Context,var list:ArrayList<question_ans
             }
 
             itemView.iv_row_survey_dtls_view_ansimg.setOnClickListener {
-                listener.viewPicOnLick(categoryList?.get(adapterPosition))
+                listener.viewPicOnLick(categoryList?.get(adapterPosition)!!)
             }
 
 

@@ -363,7 +363,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
             rv_primary_value_list.visibility = View.GONE
         }
 
-
+        println("currrentlat_long  >> from initview ${Pref.current_latitude}")
         if (!TextUtils.isEmpty(Pref.current_latitude) && !TextUtils.isEmpty(Pref.current_longitude))
             tv_current_address.text = LocationWizard.getLocationName(mContext, Pref.current_latitude.toDouble(), Pref.current_longitude.toDouble())
         tv_current_date_time.text = AppUtils.getCurrentDateTime12Format()
@@ -3637,7 +3637,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
         mGoogleMap?.uiSettings?.isZoomControlsEnabled = true
-
+        println("currrentlat_long  >>"+Pref.current_latitude+" "+Pref.current_longitude)
         if (!TextUtils.isEmpty(Pref.current_latitude) && !TextUtils.isEmpty(Pref.current_longitude)) {
             mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(Pref.current_latitude.toDouble(),
                 Pref.current_longitude.toDouble()), 15f))

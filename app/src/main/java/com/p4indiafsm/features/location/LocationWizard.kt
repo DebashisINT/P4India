@@ -57,7 +57,7 @@ open class LocationWizard {
 
             try {
                 val geocoder: Geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
                 location = addresses[0].getAddressLine(0)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -73,7 +73,7 @@ open class LocationWizard {
 
             try {
                 val geocoder: Geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(lat!!, lng!!, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(lat!!, lng!!, 1)!!
                 location = addresses[0].getAddressLine(0)
 
                 if (location.contains("http")) {
@@ -113,7 +113,7 @@ open class LocationWizard {
             var postalcode = ""
             try {
                 val geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
                 postalcode = addresses[0].postalCode
 
             } catch (e: Exception) {
@@ -128,7 +128,7 @@ open class LocationWizard {
             var postalcode = ""
             try {
                 val geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
                 postalcode = addresses[0].adminArea
 
             } catch (e: Exception) {
@@ -143,7 +143,7 @@ open class LocationWizard {
             var postalcode = ""
             try {
                 val geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
                 postalcode = addresses[0].locality
 
             } catch (e: Exception) {
@@ -158,7 +158,7 @@ open class LocationWizard {
             var postalcode = ""
             try {
                 val geocoder = Geocoder(mContext, Locale.ENGLISH)
-                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+                val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)!!
                 postalcode = addresses[0].countryName
 
             } catch (e: Exception) {
@@ -190,7 +190,7 @@ open class LocationWizard {
 
             try {
                 // May throw an IOException
-                address = coder.getFromLocationName(strAddress, 5)
+                address = coder.getFromLocationName(strAddress, 5)!!
                 if (address == null || address.size == 0) {
                     return null
                 }

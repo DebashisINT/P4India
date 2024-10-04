@@ -4175,7 +4175,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
                             XLog.d("LoginApiResponse : " + "\n" + "Status====> " + loginResponse.status + ", Message===> " + loginResponse.message)
                             if (loginResponse.status == NetworkConstant.SUCCESS) {
 
-                                 loginTimeStr = LocationWizard.getFormattedTime24Hours(true)
+                                try {
+                                    Pref.current_latitude = Pref.latitude.toString()
+                                    Pref.current_longitude = Pref.longitude.toString()
+                                    println("currrentlat_long  >> from login ${Pref.current_latitude}")
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                                loginTimeStr = LocationWizard.getFormattedTime24Hours(true)
                                  loginmeridiemStr = LocationWizard.getMeridiem()
                                  loginupdateDateStr = AppUtils.getCurrentDateForShopActi()
                                  loginupdateDateTimeStr = AppUtils.getCurrentDateTime()
@@ -6982,7 +6989,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
             XLog.d("API_Optimization GET getCurrentStockApi Login : enable " + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
             progress_wheel.spin()
             var shopAll = AppDatabase.getDBInstance()!!.shopCurrentStockEntryDao().getShopStockAll()
-            if (shopAll != null && shopAll?.isNotEmpty()) {
+            if (shopAll != null && shopAll?.isNotEmpty()!!) {
                 progress_wheel.stopSpinning()
                 getCompStockApi()
             } else {
@@ -7014,8 +7021,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
                                                             var objjj = CurrentStockEntryProductModelEntity()
                                                             objjj.stock_id = response.stock_list?.get(i)?.stock_id!!
                                                             objjj.shop_id = response.stock_list?.get(i)?.shop_id!!
-                                                            objjj.product_id = proDuctList?.get(j).product_id.toString()!!
-                                                            objjj.product_stock_qty = proDuctList?.get(j).product_stock_qty!!
+                                                            objjj.product_id = proDuctList?.get(j)!!.product_id.toString()!!
+                                                            objjj.product_stock_qty = proDuctList?.get(j)!!.product_stock_qty!!
                                                             objjj.user_id = Pref.user_id
                                                             objjj.isUploaded = true
 
@@ -7064,7 +7071,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
             XLog.d("API_Optimization GET getCompStockApi Login : enable " + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
             progress_wheel.spin()
             var comListAll = AppDatabase.getDBInstance()!!.competetorStockEntryDao().getCompetetorStockAll()
-            if (comListAll != null && comListAll?.isNotEmpty()) {
+            if (comListAll != null && comListAll?.isNotEmpty()!!) {
                 progress_wheel.stopSpinning()
                 getShopTypeStockVisibility()
             } else {

@@ -13,7 +13,6 @@
     <!--Map Key-->
     <!--<string name="MAP_ProjectAPIKey">AIzaSyBRrqsLZFqThqM8uxw_k94pZMbv3-3h0dM</string>-->
     <string name="MAP_ProjectAPIKey" translatable="false">AIzaSyAw1mQmnH1P3P1OBCGpY4LL-bW3SrDYt4o</string>
-
     <!--Login-->
     <string name="username_new" translatable="false">Username</string>
     <string name="username" translatable="false">Enter Login ID</string>
